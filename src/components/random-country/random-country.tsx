@@ -9,6 +9,7 @@ import {
 
 
 import './random-country.scss';
+import '../../styles/repear-style/country.scss';
 
 const RandomCountry: React.FC = () => {
   const countryServices = new CountryServices();
@@ -67,24 +68,24 @@ const Country = ({ country }: any) => {
         <img src={flag} alt={name} className="random-country-left-image" />
       </div>
       <div className="random-country-right">
-        <h1 className="random-country-header">{`${name} (${code2Symbol})`}</h1>
+        <h1 className="random-country-header country-header">{`${name} (${code2Symbol})`}</h1>
 
-        <ul className="random-country-detailed">
-          <li className="random-country-information">
-            <span className="random-country-title">Population: </span>
-            <span className="random-country-subitlte">{addNumberDescriptionForPopulation(population)}</span>
+        <ul className="random-country-detailed country-detailed">
+          <li className="random-country-information country-information">
+            <span className="random-country-title country-title">Population: </span>
+            <span className="random-country-subitlte country-subitlte">{addNumberDescriptionForPopulation(population)}</span>
           </li>
-          <li className="random-country-information">
-            <span className="random-country-title">Region: </span>
-            <span className="random-country-subitlte">{region}</span>
+          <li className="random-country-information country-information">
+            <span className="random-country-title country-title">Region: </span>
+            <span className="random-country-subitlte country-subitlte">{region}</span>
           </li>
-          <li className="random-country-information">
-            <span className="random-country-title">Capital: </span>
-            <span className="random-country-subitlte">{capital}</span>
+          <li className="random-country-information country-information">
+            <span className="random-country-title country-title">Capital: </span>
+            <span className="random-country-subitlte country-subitlte">{capital}</span>
           </li>
-          <li className="random-country-information">
-            <span className="random-country-title">Currencies: </span>
-            <span className="random-country-subitlte">{`${currencyName} ${currencySymbol ? `(${currencySymbol})` : null}`}</span>
+          <li className="random-country-information country-information">
+            <span className="random-country-title country-title">Currencies: </span>
+            <span className="random-country-subitlte country-subitlte">{`${currencyName} ${currencySymbol ? `(${currencySymbol})` : null}`}</span>
           </li>
         </ul>
       </div>

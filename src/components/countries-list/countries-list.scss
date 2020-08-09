@@ -1,0 +1,20 @@
+@import '../../styles/variables.scss';
+
+.countries-list {
+  max-width: 410px;
+  background-color: $element-background;
+  padding-left: 0;
+  list-style: none;
+  border-radius: 3px;
+  margin-bottom: 0;
+  &-item {
+    cursor: pointer;
+    width: 100%;
+    padding: 10px 22px;
+    border-bottom: 1px solid $main-background;
+    font-size: 16px;
+    &.countries-list-item-active {
+      background-color: rgba($color: $active, $alpha: .3);
+    }
+  }
+}

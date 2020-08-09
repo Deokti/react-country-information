@@ -8,12 +8,22 @@ body {
   color: $default-color;
 }
 
-.app {
-  margin-top: 10rem;
-  margin-bottom: 10rem;
-}
-
 .container {
   max-width: 950px;
   margin: 0 auto;
 }
+
+.app {
+  margin-top: 10rem;
+  margin-bottom: 10rem;
+  &-countries {
+    padding-top: 35px;
+    min-height: 366px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    &-left { width: 40%; }
+    &-right { width: 55%; }
+  }
+}
+
