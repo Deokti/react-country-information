@@ -1,0 +1,41 @@
+@import '../../styles/variables.scss';
+
+.random-country {
+  position: relative;
+  display: flex;
+  padding: 30px 45px;
+
+  width: 100%;
+  min-height: 225px;
+  background-color: $element-background;
+  &-left {
+    max-width: 252px;
+    max-height: 165px;
+    &-image { 
+      display: block;
+      width: 100%; 
+      height: 100%; 
+    }
+  }
+  &-right { padding-left: 30px; }
+  &-header {
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 23px;
+  }
+  &-detailed { 
+    padding-top: 5px; 
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+  }
+  &-information { padding-bottom: 5px; }
+  &-title {
+    font-weight: 500;
+    font-size: 16px;
+    
+  }
+  &-subitlte {
+    font-weight: 300;
+  }
+}

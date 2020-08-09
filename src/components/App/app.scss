@@ -1,1 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;900&display=swap');
 @import '../../styles/bootstrap-reboot.min.scss';
+@import '../../styles/variables.scss';
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: $main-background;
+  color: $default-color;
+}
+
+.app {
+  margin-top: 10rem;
+  margin-bottom: 10rem;
+}
+
+.container {
+  max-width: 950px;
+  margin: 0 auto;
+}

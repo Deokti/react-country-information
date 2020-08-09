@@ -26,12 +26,15 @@ export default class CountryServices {
       giniCoefficient: country.gini,
       flag: country.flag,
       region: country.region,
-      code: [country.alpha2Code, country.alpha3Code],
+      code2Symbol: country.alpha2Code,
+      code3Symbol: country.alpha3Code,
       borders: country.borders,
       capital: country.capital,
       area: country.area,
       languages: [country.name, country.nativeName],
-      currencies: country.currencies[0]
+      currencies: country.currencies[0],
+      currencyName: country.currencies[0].name,
+      currencySymbol: country.currencies[0].symbol
     }
   };
 }
