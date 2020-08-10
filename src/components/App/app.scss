@@ -11,6 +11,7 @@ body {
 .container {
   max-width: 950px;
   margin: 0 auto;
+  padding: 0 15px;
 }
 
 .app {
@@ -22,8 +23,28 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    flex-wrap: wrap;
     &-left { width: 40%; }
-    &-right { width: 55%; }
+    &-right { width: 59%; }
   }
 }
 
+@media screen and (max-width: 1000px) {
+  .app {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  .app-countries {
+    padding-top: 25px;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .app-countries-left, 
+  .app-countries-right {
+    width: 100%;
+  }
+  .app-countries-right {
+    padding-top: 1px;
+  }
+}

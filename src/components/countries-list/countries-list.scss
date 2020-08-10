@@ -1,12 +1,14 @@
 @import '../../styles/variables.scss';
 
 .countries-list {
-  max-width: 410px;
+  margin-top: 5px;
   background-color: $element-background;
   padding-left: 0;
   list-style: none;
   border-radius: 3px;
   margin-bottom: 0;
+  height: 270px;
+  overflow-y: auto;
   &-item {
     cursor: pointer;
     width: 100%;

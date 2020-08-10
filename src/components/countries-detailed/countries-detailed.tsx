@@ -1,29 +1,47 @@
 import React, { useState, useEffect } from 'react';
 
-import './countries-detailed.scss';
-
 import CountryServices from '../../Services/country-services';
+import { addNumberDescriptionForPopulation, splitTheNumber } from '../utils/additional-functions';
+import Spinner from '../spinner';
+
+import './countries-detailed.scss';
 
 const CountriesDetailed: React.FC<{ nameCountry: string }> = ({ nameCountry }) => {
   const [getCountry, setGetCountry] = useState({});
+  const [loading, setLoading] = useState<boolean>(true);
 
-  const countryServices = new CountryServices();
+  const { getCountryByName } = new CountryServices();
 
   useEffect(() => {
-    countryServices.getCountryByName(nameCountry)
-      .then(country => setGetCountry(country))
+    setLoading(true);
+    let checkService = false;
 
-  }, [nameCountry]);
+    !checkService && getCountryByName(nameCountry)
+      .then(country => {
+        setGetCountry(country);
+        setLoading(false);
+      });
+
+    return () => {
+      checkService = false
+    };
+  }, [nameCountry])
+
+  console.log(getCountry);
+
+  const load = loading ? <Spinner /> : null;
+  const content = !load ? <CountryDetailedItem country={getCountry} /> : null;
 
   return (
     <div className="countries-detailed">
-      <CountryDetailedTemplate country={getCountry} />
+      {load}
+      {content}
     </div>
   );
 };
 
 
-const CountryDetailedTemplate = ({ country }: any) => {
+const CountryDetailedItem = ({ country }: any) => {
   const {
     flag,
     code2Symbol,
@@ -31,7 +49,11 @@ const CountryDetailedTemplate = ({ country }: any) => {
     population,
     name,
     nativeName,
-    area
+    area,
+    capital,
+    languagesName,
+    languagesNativeName,
+    giniCoefficient
   } = country;
 
   return (
@@ -41,28 +63,36 @@ const CountryDetailedTemplate = ({ country }: any) => {
       </div>
 
       <div className="countries-detailed-information">
-        <h1 className="country-header">{`${name} (${nativeName})`}</h1>
+        <h1 className="country-header">{`${name} (${capital})`}</h1>
 
         <ul className="random-country-detailed country-detailed">
-          <li className="random-country-information country-information">
+          <li className="random-country-information country-information" title="Name of the language in this country">
             <span className="random-country-title country-title">Native name: </span>
-            <span className="random-country-subitlte country-subitlte">Российская Федерация</span>
+            <span className="random-country-subitlte country-subitlte">{nativeName}</span>
           </li>
-          <li className="random-country-information country-information">
+          <li className="random-country-information country-information" title="The number of people living in the country.">
             <span className="random-country-title country-title">Population: </span>
-            <span className="random-country-subitlte country-subitlte">{population}</span>
+            <span className="random-country-subitlte country-subitlte">{addNumberDescriptionForPopulation(population)}</span>
           </li>
           <li className="random-country-information country-information">
             <span className="random-country-title country-title">Code: </span>
             <span className="random-country-subitlte country-subitlte">{`${code2Symbol} or ${code3Symbol}`}</span>
           </li>
-          <li className="random-country-information country-information">
-            <span className="random-country-title country-title">Area: </span>
-            <span className="random-country-subitlte country-subitlte">{`${area}`} km<sup>2</sup></span>
+          <li
+            className="random-country-information country-information"
+            title="In economics, the Gini coefficient, sometimes called the Gini index or Gini ratio, is a measure of statistical dispersion intended to represent the income inequality or wealth inequality within a nation or any other group of people. It was developed by the Italian statistician and sociologist Corrado Gini and published in his 1912 paper Variability and Mutability">
+            <span className="random-country-title country-title">Gini coefficient : </span>
+            <span className="random-country-subitlte country-subitlte">
+              {`${giniCoefficient || '???'}`} (<a href="https://en.wikipedia.org/wiki/Gini_coefficient" target="blank">Wiki</a>)
+            </span>
           </li>
           <li className="random-country-information country-information">
+            <span className="random-country-title country-title">Area: </span>
+            <span className="random-country-subitlte country-subitlte">{`${splitTheNumber(area)}`} km<sup>2</sup></span>
+          </li>
+          <li className="random-country-information country-information" title='One of the possible'>
             <span className="random-country-title country-title">Languages: </span>
-            <span className="random-country-subitlte country-subitlte">Russian (Русский)</span>
+            <span className="random-country-subitlte country-subitlte">{`${languagesName} (${languagesNativeName})`}</span>
           </li>
         </ul>
       </div>

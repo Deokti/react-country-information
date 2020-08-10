@@ -85,7 +85,7 @@ const Country = ({ country }: any) => {
           </li>
           <li className="random-country-information country-information">
             <span className="random-country-title country-title">Currencies: </span>
-            <span className="random-country-subitlte country-subitlte">{`${currencyName} ${currencySymbol ? `(${currencySymbol})` : null}`}</span>
+            <span className="random-country-subitlte country-subitlte">{`${currencyName} (${currencySymbol || '???'})`}</span>
           </li>
         </ul>
       </div>

@@ -19,3 +19,20 @@
   }
   &-right { padding-left: 30px; }
 }
+
+@media screen and (max-width: 720px) {
+  .random-country {
+    padding: 30px 20px;
+  }
+  .random-country-right {
+    padding-left: 20px;
+  }
+}
+@media screen and (max-width: 625px) {
+  .random-country {
+    padding: 30px 20px;
+  }
+  .random-country-right {
+    padding-left: 20px;
+  }
+}
