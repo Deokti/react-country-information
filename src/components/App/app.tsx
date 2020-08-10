@@ -28,8 +28,8 @@ const App: React.FC = () => {
   const onSearchCountry = (countries: any[], search: string) => {
     if (search.length === 0) return countries;
 
-    return countries.filter(item => item.name.toLowerCase()
-      .includes(search.toLowerCase()));
+    return countries.filter(item => item.name.toLowerCase().includes(search.toLowerCase()) ||
+      item.code2Symbol.toLowerCase().includes(search.toLowerCase()))
   }
 
   const viewCountriesList = onSearchCountry(countriesList, search);

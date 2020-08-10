@@ -9,12 +9,12 @@ import './countries-detailed.scss';
 const CountriesDetailed: React.FC<{ nameCountry: string }> = ({ nameCountry }) => {
   const [getCountry, setGetCountry] = useState({});
   const [loading, setLoading] = useState<boolean>(true);
+  const [checkService, setCheckService] = useState<boolean>(false);
 
   const { getCountryByName } = new CountryServices();
 
   useEffect(() => {
     setLoading(true);
-    let checkService = false;
 
     !checkService && getCountryByName(nameCountry)
       .then(country => {
@@ -23,11 +23,9 @@ const CountriesDetailed: React.FC<{ nameCountry: string }> = ({ nameCountry }) =
       });
 
     return () => {
-      checkService = false
+      setCheckService(false);
     };
   }, [nameCountry])
-
-  console.log(getCountry);
 
   const load = loading ? <Spinner /> : null;
   const content = !load ? <CountryDetailedItem country={getCountry} /> : null;
