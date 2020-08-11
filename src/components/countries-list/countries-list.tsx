@@ -2,7 +2,13 @@ import React from 'react';
 
 import './countries-list.scss';
 
-const CountriesList: React.FC<{ countriesList: any[], changeCountryName(name: string): void, currentNameCountry: string }> = ({ changeCountryName, currentNameCountry, countriesList }) => {
+type TypeCountriesList = {
+  countriesList: any[],
+  changeCountryName(name: string): void,
+  currentNameCountry: string
+}
+
+const CountriesList: React.FC<TypeCountriesList> = ({ changeCountryName, currentNameCountry, countriesList }) => {
   const renderCountries = countriesList.map(({ name, code2Symbol }) => {
     const isActive = name === currentNameCountry ? 'countries-list-item-active' : '';
 

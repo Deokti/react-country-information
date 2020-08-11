@@ -1,29 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import RandomCountry from '../random-country';
 import CountriesList from '../countries-list';
 import CountriesDetailed from '../countries-detailed';
 import SearchCountry from '../search-country';
 
 import CountryServices from '../../Services/country-services';
-
+import useDataCountry from '../get-country-data';
 
 import './app.scss';
 
+
 const App: React.FC = () => {
   const [nameCountry, setNameCountry] = useState<string>('Afghanistan'); //'Afghanistan'
-  const [countriesList, setCountriesList] = useState<Array<object>>([]);
   const [search, setSearch] = useState<string>('');
 
-  const countryServices = new CountryServices();
-
-  useEffect(() => {
-    countryServices.getAllCountries()
-      .then(countries => setCountriesList(countries));
-  }, []);
-
-  const changeCountryName = (name: string) => setNameCountry(name);
-
-  const onChangeSearch = (label: string) => setSearch(label);
+  const changeCountryName = (name: string): void => setNameCountry(name);
+  const onChangeSearch = (label: string): void => setSearch(label);
 
   const onSearchCountry = (countries: any[], search: string) => {
     if (search.length === 0) return countries;
@@ -32,7 +24,9 @@ const App: React.FC = () => {
       item.code2Symbol.toLowerCase().includes(search.toLowerCase()))
   }
 
-  const viewCountriesList = onSearchCountry(countriesList, search);
+  const { getAllCountries } = new CountryServices();
+  const { getCountry } = useDataCountry(getAllCountries);
+  const viewCountriesList = onSearchCountry(getCountry, search);
 
   return (
     <section className="app">
