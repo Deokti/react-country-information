@@ -8,6 +8,9 @@
 react-app-env.d.ts
 yarn.lock
 
+.firebaserc
+/firebase.json
+
 # testing
 /coverage
 

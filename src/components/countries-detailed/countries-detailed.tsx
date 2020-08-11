@@ -29,7 +29,6 @@ const CountriesDetailed: React.FC<{ nameCountry: string }> = ({ nameCountry }) =
   );
 };
 
-
 const CountryDetailedItem = ({ country }: any) => {
   const {
     flag,
@@ -40,12 +39,16 @@ const CountryDetailedItem = ({ country }: any) => {
     nativeName,
     area,
     capital,
-    giniCoefficient
+    giniCoefficient,
+    region,
+    subregion,
   } = country;
 
   return (
     <TemplateCountry flag={flag} imgAlt={name} countryName={name} additialName={capital}>
       <TemplateCountryItem title='Native name:' subtitle={nativeName} message="Name of the language in this country" />
+      <TemplateCountryItem title='Region:' subtitle={region} />
+      <TemplateCountryItem title='Subregion:' subtitle={subregion} />
       <TemplateCountryItem title='Population:' subtitle={addNumberDescriptionForPopulation(population)} message="The number of people living in the country" />
       <TemplateCountryItem title='Code:' subtitle={`${code2Symbol} or ${code3Symbol}`} />
 

@@ -10,7 +10,7 @@ type TypeCountriesList = {
 
 const CountriesList: React.FC<TypeCountriesList> = ({ changeCountryName, currentNameCountry, countriesList }) => {
   const renderCountries = countriesList.map(({ name, code2Symbol }) => {
-    const isActive = name === currentNameCountry ? 'countries-list-item-active' : '';
+    const isActive: string = name === currentNameCountry ? 'countries-list-item-active' : '';
 
     return (
       <li key={name}
