@@ -13,8 +13,6 @@ const SearchCountry: React.FC<{ onChangeSearch(label: string): void }> = ({ onCh
     if (event.target.value.length > 1) setShowButton(true);
   };
 
-  console.log(showButton);
-
   const onClearInput = () => {
     setLabel('');
     onChangeSearch('');
