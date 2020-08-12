@@ -21,16 +21,24 @@
 @media screen and (max-width: 720px) {
   .random-country {
     padding: 30px 20px;
-  }
-  .random-country-right {
-    padding-left: 20px;
+    .countries-detailed-information {
+      padding-left: 20px;
+    }
+    .countries-detailed-image {
+      max-width: 210px;
+      img {
+        height: auto;
+      }
+    }
   }
 }
 @media screen and (max-width: 625px) {
   .random-country {
-    padding: 30px 20px;
+    flex-direction: column;
+    .countries-detailed-information {
+      padding-left: 0;
+      padding-top: 15px;
+    }
   }
-  .random-country-right {
-    padding-left: 20px;
-  }
+  
 }

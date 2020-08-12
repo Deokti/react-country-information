@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CountryServices from '../../Services/country-services';
 import Spinner from '../spinner';
 import TemplateCountry from '../template-country';
+import TemplateCountryItem from '../template-country-item';
 
 import {
   getRandomNumber,
@@ -66,22 +67,10 @@ const Country = ({ country }: any) => {
 
   return (
     <TemplateCountry flag={flag} imgAlt={name} countryName={name} additialName={code2Symbol}>
-      <li className="random-country-information country-information">
-        <span className="random-country-title country-title">Population: </span>
-        <span className="random-country-subitlte country-subitlte">{addNumberDescriptionForPopulation(population)}</span>
-      </li>
-      <li className="random-country-information country-information">
-        <span className="random-country-title country-title">Region: </span>
-        <span className="random-country-subitlte country-subitlte">{region}</span>
-      </li>
-      <li className="random-country-information country-information">
-        <span className="random-country-title country-title">Capital: </span>
-        <span className="random-country-subitlte country-subitlte">{capital}</span>
-      </li>
-      <li className="random-country-information country-information">
-        <span className="random-country-title country-title">Currencies: </span>
-        <span className="random-country-subitlte country-subitlte">{`${currencyName} (${currencySymbol || '???'})`}</span>
-      </li>
+      <TemplateCountryItem title="Population:" subtitle={addNumberDescriptionForPopulation(population)} addedClass="random" />
+      <TemplateCountryItem title="Region:" subtitle={region} />
+      <TemplateCountryItem title="Capital:" subtitle={capital} />
+      <TemplateCountryItem title="Currencies:" subtitle={`${currencyName} (${currencySymbol || '???'})`} />
     </TemplateCountry>
   );
 }

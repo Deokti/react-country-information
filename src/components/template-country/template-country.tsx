@@ -1,9 +1,17 @@
 import React from 'react';
 
-
 import './template-country.scss';
 
-const TemplateCountry: React.FC<{ flag: string, imgAlt: string, countryName: string, additialName: string }> = ({ flag, imgAlt, countryName, additialName, children }) => {
+type TypeTemplateCountry = {
+  flag: string,
+  imgAlt: string,
+  countryName: string,
+  additialName: string,
+  addedClass?: string,
+};
+
+
+const TemplateCountry: React.FC<TypeTemplateCountry> = ({ flag, imgAlt, countryName, additialName, children, addedClass }) => {
   return (
     <React.Fragment>
       <div className="countries-detailed-image">
@@ -13,7 +21,7 @@ const TemplateCountry: React.FC<{ flag: string, imgAlt: string, countryName: str
       <div className="countries-detailed-information">
         <h1 className="country-header">{`${countryName} (${additialName})`}</h1>
 
-        <ul className="random-country-detailed country-detailed">
+        <ul className="country-detailed">
           {children}
         </ul>
       </div>
