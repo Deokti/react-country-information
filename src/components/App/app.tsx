@@ -1,20 +1,18 @@
 import React, { useState } from 'react';
 import RandomCountry from '../random-country';
+import { BrowserRouter, Route } from 'react-router-dom';
 import CountriesList from '../countries-list';
 import CountriesDetailed from '../countries-detailed';
 import SearchCountry from '../search-country';
 
 import CountryServices from '../../Services/country-services';
 import useDataCountry from '../get-country-data';
+import Row from '../row';
 
 import './app.scss';
 
-
 const App: React.FC = () => {
-  const [nameCountry, setNameCountry] = useState<string>('Afghanistan'); //'Afghanistan'
   const [search, setSearch] = useState<string>('');
-
-  const changeCountryName = (name: string): void => setNameCountry(name);
   const onChangeSearch = (label: string): void => setSearch(label);
 
   const onSearchCountry = (countries: any[], search: string) => {
@@ -35,23 +33,25 @@ const App: React.FC = () => {
           <RandomCountry />
         </div>
 
-        <div className="app-countries">
-          <div className="app-countries-left">
-            <SearchCountry onChangeSearch={onChangeSearch} />
-            <CountriesList
-              countriesList={viewCountriesList}
-              currentNameCountry={nameCountry}
-              changeCountryName={changeCountryName} />
-          </div>
-          <div className="app-countries-right">
-            <CountriesDetailed nameCountry={nameCountry} />
-          </div>
-        </div>
 
+        <div className="app-countries">
+          <BrowserRouter>
+            <Route path="/:name?" render={({ match, history }) => {
+              const { name = 'Afghanistan' } = match.params;
+
+              return <Row
+                top={<SearchCountry onChangeSearch={onChangeSearch} />}
+                left={<CountriesList
+                  countriesList={viewCountriesList}
+                  activeCurrentNameCountry={name}
+                  changeCountryName={(name) => history.push(name)} />}
+                right={<CountriesDetailed nameCountry={name} />} />
+            }} />
+          </BrowserRouter>
+        </div>
       </div>
     </section>
   );
 };
 
 export default App;
-
