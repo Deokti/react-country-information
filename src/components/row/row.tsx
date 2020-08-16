@@ -3,7 +3,7 @@ import React from 'react';
 import './row.scss';
 
 type TypeRow = {
-  top: JSX.Element,
+  top?: JSX.Element,
   left: JSX.Element,
   right: JSX.Element
 }

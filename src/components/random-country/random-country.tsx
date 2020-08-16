@@ -3,32 +3,29 @@ import CountryServices from '../../Services/country-services';
 import Spinner from '../spinner';
 import TemplateCountry from '../template-country';
 import TemplateCountryItem from '../template-country-item';
-
 import {
   getRandomNumber,
   addNumberDescriptionForPopulation
 } from '../utils/additional-functions';
 
-
-
 import './random-country.scss';
 import '../../styles/repear-style/country.scss';
 
-const RandomCountry: React.FC = () => {
-  const countryServices = new CountryServices();
+import { useGetCountryData } from '../get-country-data/get-country-data';
 
+const RandomCountry: React.FC = () => {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState({});
-  const [loading, setLoading] = useState(true);
+
+  const { getAllCountries } = new CountryServices();
+  const getData = useGetCountryData(getAllCountries);
+  const { getCountry, loading } = getData;
 
   useEffect(() => {
-    countryServices.getAllCountries()
-      .then(response => {
-        setCountries(response);
-        setCountry(response[168]);
-        setLoading(false);
-      });
-  }, []);
+    setCountries(getCountry);
+    setCountry(countries[20])
+  }, [getCountry, countries]);
+
 
   const getRandomCountry = () => {
     const number = getRandomNumber(0, countries.length - 1);
@@ -39,7 +36,6 @@ const RandomCountry: React.FC = () => {
     const timeout = setInterval(getRandomCountry, 5000);
     return () => clearInterval(timeout);
   });
-
 
   const spinner = loading ? <Spinner /> : null;
   const content = !spinner ? <Country country={country} /> : null;
@@ -52,8 +48,7 @@ const RandomCountry: React.FC = () => {
   );
 };
 
-
-const Country = ({ country }: any) => {
+const Country = ({ country = {} }: any) => {
   const {
     population,
     flag,
@@ -67,7 +62,7 @@ const Country = ({ country }: any) => {
 
   return (
     <TemplateCountry flag={flag} imgAlt={name} countryName={name} additialName={code2Symbol}>
-      <TemplateCountryItem title="Population:" subtitle={addNumberDescriptionForPopulation(population)} addedClass="random" />
+      <TemplateCountryItem title="Population:" subtitle={addNumberDescriptionForPopulation(population)} />
       <TemplateCountryItem title="Region:" subtitle={region} />
       <TemplateCountryItem title="Capital:" subtitle={capital} />
       <TemplateCountryItem title="Currencies:" subtitle={`${currencyName} (${currencySymbol || '???'})`} />
