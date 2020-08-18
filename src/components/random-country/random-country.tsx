@@ -7,23 +7,21 @@ import {
   getRandomNumber,
   addNumberDescriptionForPopulation
 } from '../utils/additional-functions';
+import { useGetCountryData } from '../get-country-data/get-country-data';
 
 import './random-country.scss';
 import '../../styles/repear-style/country.scss';
-
-import { useGetCountryData } from '../get-country-data/get-country-data';
 
 const RandomCountry: React.FC = () => {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState({});
 
   const { getAllCountries } = new CountryServices();
-  const getData = useGetCountryData(getAllCountries);
-  const { getCountry, loading } = getData;
+  const { getCountry, loading, error } = useGetCountryData(getAllCountries);
 
   useEffect(() => {
     setCountries(getCountry);
-    setCountry(countries[20])
+    setCountry(countries[20]);
   }, [getCountry, countries]);
 
 
@@ -38,7 +36,7 @@ const RandomCountry: React.FC = () => {
   });
 
   const spinner = loading ? <Spinner /> : null;
-  const content = !spinner ? <Country country={country} /> : null;
+  const content = !spinner && !error ? <Country country={country} /> : null;
 
   return (
     <div className="random-country">
