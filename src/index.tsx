@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './components/App';
+import ErrorBoundary from './components/error-boundary';
+
 
 ReactDOM.render(
-  // <React.StrictMode>
-  <App />
-  // </React.StrictMode>
-  ,
+  <ErrorBoundary>
+    <App />
+  </ErrorBoundary>,
   document.getElementById('root')
 );
 

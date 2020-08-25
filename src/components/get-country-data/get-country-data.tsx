@@ -8,7 +8,6 @@ const useDataFromCountry = (request: any, countryName?: string) => {
   const baseState = useMemo(() => ({
     getCountry: [],
     loading: true,
-    error: false,
   }), []);
 
   const [getData, setGetData] = useState(baseState);
@@ -19,13 +18,7 @@ const useDataFromCountry = (request: any, countryName?: string) => {
       .then((getCountry: any) => setGetData({
         getCountry,
         loading: false,
-        error: false
       }))
-      .catch(setGetData({
-        getCountry: [],
-        loading: false,
-        error: true
-      }));
   }, [countryName, baseState]);
 
   return getData;

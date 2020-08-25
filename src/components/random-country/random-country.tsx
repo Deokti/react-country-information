@@ -17,7 +17,7 @@ const RandomCountry: React.FC = () => {
   const [country, setCountry] = useState({});
 
   const { getAllCountries } = new CountryServices();
-  const { getCountry, loading, error } = useGetCountryData(getAllCountries);
+  const { getCountry, loading } = useGetCountryData(getAllCountries);
 
   useEffect(() => {
     setCountries(getCountry);
@@ -36,7 +36,7 @@ const RandomCountry: React.FC = () => {
   });
 
   const spinner = loading ? <Spinner /> : null;
-  const content = !spinner && !error ? <Country country={country} /> : null;
+  const content = !spinner ? <Country country={country} /> : null;
 
   return (
     <div className="random-country">

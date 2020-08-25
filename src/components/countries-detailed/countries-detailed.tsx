@@ -16,7 +16,7 @@ import './countries-detailed.scss';
 
 const CountriesDetailed: React.FC<{ nameCountry: string }> = ({ nameCountry }) => {
   const { getCountryByName } = new CountryServices();
-  const { getCountry, loading } = useGetCountryData(getCountryByName, nameCountry)
+  const { getCountry, loading } = useGetCountryData(getCountryByName, nameCountry);
 
   const load = loading ? <Spinner /> : null;
   const visibleCountry = !load ? <CountryDetailedItem country={getCountry} /> : null;
